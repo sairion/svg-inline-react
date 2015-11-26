@@ -4,7 +4,6 @@ var ReactDOMServer = require('react-dom/server');
 var assert = require('assert');
 
 
-
 describe('<InlineSVG />', function () {
     var rendered;
     var src = "<svg><circle cx=\"50\" cy=\"50\" r=\"40\" stroke=\"black\" stroke-width=\"3\" fill=\"red\"></circle></svg>";
@@ -13,7 +12,8 @@ describe('<InlineSVG />', function () {
         rendered = ReactDOMServer.renderToString(React.createElement(InlineSVG, { src: src }));
     });
 
-    it('should render component correctly without any error', function () {
+    it('should render component correctly with expected output', function () {
+        // FIXME
         assert.equal(typeof rendered, 'string');
     });
 
