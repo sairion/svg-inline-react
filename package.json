@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build-dist": "babel ./lib/index.js > ./dist/index.js",
-    "test": "mocha test/test.js"
+    "test": "npm run build-dist && mocha test/test.js"
   },
   "author": "Jaeho Lee <me@jaeholee.org>",
   "license": "MIT",
