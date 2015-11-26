@@ -1,6 +1,10 @@
 # `svg-inline-react`: Inline SVG wrapper component for React
 
-This component wraps `dangerouslyInnerHTML` prop for easier use. Inlining SVGs have many benefits and cons too; See ["Using SVG"](https://css-tricks.com/using-svg/) for further detail. Transpiling is not required (written with pre-ES6 syntax).
+This component wraps `dangerouslyInnerHTML` prop for easier use. Inlining SVG has pros and cons; See ["Using SVG"](https://css-tricks.com/using-svg/) for further detail.
+
+## Transpilation needed?
+
+From version `0.2.0`, source is written with ES2015, but package default is transpiled source. If you want to use un-transpiled ES2015 source, please import from `svg-inline-react/lib`.
 
 ## Usage
 
@@ -9,14 +13,23 @@ You can use [`svg-inline-loader`](https://github.com/sairion/svg-inline-loader) 
 Use like:
 
 ```jsx
-var InlineSVG = require('svg-inline-react');
+var InlineSVG = require('svg-inline-react');  // CommonJS
+import InlineSVG from 'svg-inline-react/lib'; // ES2015
 
 <InlineSVG src={require("svg-inline!icon.svg")} /> // Use with loader
 ```
 
-### prop `element`
+### prop `src` : string
+
+valid SVG string.
+
+### prop `element` : string
 
 You can change element where svg included using `element` prop, default is `<i />`. But self closed tags like `img` is not allowed, and an error will be thrown from React side.
+
+### prop `raw` : bool (experimental!)
+
+This prop allows your svg file to be rendered directly, without a container element wraps it. This is an experimental feature. Since this feature needs `DOMParser` svg+xml support, it's only avaialble on >= IE10 and other modern browsers (it checks support before use, so errors won't be thrown though). Also, the prop will be ignored on server side rendering environment.
 
 ## Notes
 

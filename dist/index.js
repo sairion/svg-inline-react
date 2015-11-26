@@ -20,27 +20,89 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var DOMParser = typeof window !== 'undefined' && window.DOMParser;
+
+function isParserAvailable(src) {
+    // kinda naive but meh, ain't gonna use full-blown parser for this
+    return typeof DOMParser === 'function' && typeof src === 'string' && src.trim().substr(0, 4) === '<svg';
+}
+
+// parse SVG string using `DOMParser`
+function parseFromSVGString(src) {
+    var parser = new DOMParser();
+    return parser.parseFromString(src, "image/svg+xml");
+}
+
+// Transform DOM prop/attr names applicable to `<svg>` element but react-limited
+function switchSVGAttrToReactProp(propName) {
+    switch (propName) {
+        case 'class':
+            return 'className';
+        default:
+            return propName;
+    }
+}
+
 var InlineSVG = (function (_React$Component) {
     _inherits(InlineSVG, _React$Component);
 
     function InlineSVG() {
         _classCallCheck(this, InlineSVG);
 
-        _get(Object.getPrototypeOf(InlineSVG.prototype), 'constructor', this).apply(this, arguments);
+        _get(Object.getPrototypeOf(InlineSVG.prototype), 'constructor', this).call(this);
+        this._extractSVGProps = this._extractSVGProps.bind(this);
     }
 
+    // Serialize `Attr` objects in `NamedNodeMap`
+
     _createClass(InlineSVG, [{
+        key: '_serializeAttrs',
+        value: function _serializeAttrs(map) {
+            var ret = {};
+            var prop;
+            for (var i = 0; i < map.length; i++) {
+                prop = switchSVGAttrToReactProp(map[i].name);
+                ret[prop] = map[i].value;
+            }
+            return ret;
+        }
+
+        // get <svg /> element props
+    }, {
+        key: '_extractSVGProps',
+        value: function _extractSVGProps(src) {
+            var map = parseFromSVGString(src).documentElement.attributes;
+            return map.length > 0 ? this._serializeAttrs(map) : null;
+        }
+
+        // get content inside <svg> element.
+    }, {
+        key: '_stripSVG',
+        value: function _stripSVG(src) {
+            return parseFromSVGString(src).documentElement.innerHTML;
+        }
+    }, {
         key: 'render',
         value: function render() {
-            var svgProps;
+            var svgProps = {};
             var src = this.props.src;
             var __html = src;
+            var Element = this.props.element;
 
             if (this.props.children != null) {
                 console.info('<InlineSVG />: `children` will be always ignored.');
             }
 
-            var Element = this.props.element;
+            if (this.props.raw === true) {
+                if (isParserAvailable(src)) {
+                    Element = 'svg';
+                    svgProps = this._extractSVGProps(src);
+                    __html = this._stripSVG(src);
+                } else {
+                    console && console.info('<InlineSVG />: `raw` prop works only when `window.DOMParser` exists.');
+                }
+            }
+
             return _react2['default'].createElement(Element, _extends({}, svgProps, this.props, { src: null, children: null,
                 dangerouslySetInnerHTML: { __html: __html } }));
         }
@@ -54,7 +116,8 @@ exports['default'] = InlineSVG;
 InlineSVG.defaultProps = { element: 'i' };
 InlineSVG.propTypes = {
     src: _react2['default'].PropTypes.string.isRequired,
-    element: _react2['default'].PropTypes.string
+    element: _react2['default'].PropTypes.string,
+    raw: _react2['default'].PropTypes.bool
 };
 module.exports = exports['default'];
 
