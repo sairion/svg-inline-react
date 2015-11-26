@@ -1,10 +1,11 @@
 {
   "name": "svg-inline-react",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Inline SVG wrapper component for React",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": ""
+    "build-dist": "babel ./lib/index.js > ./dist/index.js",
+    "test": "mocha test/test.js"
   },
   "author": "Jaeho Lee <me@jaeholee.org>",
   "license": "MIT",
@@ -14,7 +15,6 @@
   },
   "keywords": [
     "svg",
-    "webpack",
     "react",
     "loader"
   ],
@@ -23,7 +23,11 @@
   },
   "homepage": "https://github.com/sairion/svg-inline-react",
   "dependencies": {
-    "object-assign": "^4.0.1",
-    "react": "^0.12.0"
+    "react": "^0.13.3"
+  },
+  "devDependencies": {
+    "babel": "^5.8.34",
+    "mocha": "^2.3.4",
+    "react-dom": "^0.14.3"
   }
 }
