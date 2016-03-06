@@ -1,11 +1,18 @@
 {
   "name": "svg-inline-react",
-  "version": "0.3.1",
+  "version": "1.0.0",
   "description": "Inline SVG wrapper component for React",
   "main": "dist/index.js",
+  "jsnext:main": "es/index.js",
   "scripts": {
-    "build-dist": "babel ./lib/index.js > ./dist/index.js",
-    "test": "npm run build-dist && babel-node ./test/import.js && mocha test/test.js"
+    "test": "npm run build:es && babel-node ./test/import.js && mocha test/test.js",
+    "clean": "rimraf es dist",
+    "build:es": "babel lib --out-dir es --blacklist=es6.modules --stage=0",
+    "build:cjs": "babel lib --out-dir dist --stage=0",
+    "build": "npm run build:es && npm run build:cjs",
+    "version": "npm run build",
+    "postversion": "git push && git push --tags",
+    "prepublish": "npm run build"
   },
   "author": "Jaeho Lee <me@jaeholee.org>",
   "license": "MIT",
@@ -28,6 +35,7 @@
   "devDependencies": {
     "babel": "^5.8.34",
     "mocha": "^2.3.4",
-    "react-dom": "^0.14.3"
+    "react-dom": "^0.14.3",
+    "rimraf": "^2.5.1"
   }
 }

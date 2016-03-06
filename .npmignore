@@ -1,2 +1,4 @@
-test/
-README.md
+.gitignore
+npm-debug.log
+/node_modules/
+/test/

@@ -22,6 +22,14 @@ describe('<InlineSVG />', function () {
         assert.equal(rendered.endsWith('</i>'), true);
     });
 
+    it('should be able to change container element', function () {
+        var withContainerOption = ReactDOMServer.renderToString(
+            React.createElement(InlineSVG, { src: src, element: 'span' })
+        );
+        assert.equal(withContainerOption.startsWith('<span'), true);
+        assert.equal(withContainerOption.endsWith('</span>'), true);
+    });
+
     it('should render without any error', function () {
         var rendered = ReactDOMServer.renderToString(React.createElement(InlineSVG, { src: src }));
         assert.equal(typeof rendered, 'string');

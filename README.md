@@ -2,9 +2,9 @@
 
 This component wraps `dangerouslyInnerHTML` prop for easier use. Inlining SVG has pros and cons; See ["Using SVG"](https://css-tricks.com/using-svg/) for further detail.
 
-## Transpilation needed?
+## notice on transpilation
 
-From version `0.2.0`, source is written with ES2015, but package default is transpiled source. If you want to use un-transpiled ES2015 source, please import from `svg-inline-react/lib`.
+From version `0.2.0`, source is written with ES2015, but package default is transpiled source. If you want to use un-transpiled ES2015 source, please import from `svg-inline-react/es`. (Rollup's jsnext:main' also option points to `svg-inline-react/es`)
 
 ## Usage
 
@@ -14,7 +14,7 @@ Use like:
 
 ```jsx
 var InlineSVG = require('svg-inline-react');  // CommonJS
-import InlineSVG from 'svg-inline-react/lib'; // ES2015
+import InlineSVG from 'svg-inline-react'; // ES2015
 
 <InlineSVG src={require("svg-inline!icon.svg")} /> // Use with loader
 ```
