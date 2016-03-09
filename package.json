@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "jsnext:main": "es/index.js",
   "scripts": {
-    "test": "npm run build:es && babel-node ./test/import.js && mocha test/test.js",
+    "test": "karma start",
+    "test:conformance": "npm run clean && npm run build && babel-node ./test/import.js ",
     "clean": "rimraf es dist",
     "build:es": "babel lib --out-dir es --blacklist=es6.modules --stage=0",
     "build:cjs": "babel lib --out-dir dist --stage=0",
@@ -34,8 +35,17 @@
   },
   "devDependencies": {
     "babel": "^5.8.34",
+    "babel-core": "^5.8.35",
+    "babel-loader": "^5.4.0",
+    "karma": "^0.13.21",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-mocha": "^0.2.2",
+    "karma-spec-reporter": "0.0.24",
+    "karma-webpack": "^1.7.0",
     "mocha": "^2.3.4",
     "react-dom": "^0.14.3",
-    "rimraf": "^2.5.1"
+    "rimraf": "^2.5.1",
+    "svg-inline-loader": "^0.4.1",
+    "webpack": "^1.12.14"
   }
 }

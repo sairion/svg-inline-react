@@ -4,7 +4,7 @@ This component wraps `dangerouslyInnerHTML` prop for easier use. Inlining SVG ha
 
 ## notice on transpilation
 
-From version `0.2.0`, source is written with ES2015, but package default is transpiled source. If you want to use un-transpiled ES2015 source, please import from `svg-inline-react/es`. (Rollup's jsnext:main' also option points to `svg-inline-react/es`)
+Distributed source is transpiled. If you want to use ES module version, please import from `svg-inline-react/es`. (Rollup's jsnext:main' also option points to it)
 
 ## Usage
 
