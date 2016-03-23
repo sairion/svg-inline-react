@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/sairion/svg-inline-react",
   "peerDependencies": {
-    "react": "^0.14.0"
+    "react": "^0.14.0 || ^15.0.0-rc.1"
   },
   "devDependencies": {
     "babel": "^5.8.34",
