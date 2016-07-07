@@ -1,6 +1,6 @@
 {
   "name": "svg-inline-react",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Inline SVG wrapper component for React",
   "main": "dist/index.js",
   "jsnext:main": "es/index.js",
@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/sairion/svg-inline-react",
   "peerDependencies": {
-    "react": "^0.14.0 || ^15.0.0-rc.1"
+    "react": "^0.14.0 || ^15.0.0"
   },
   "devDependencies": {
     "babel": "^5.8.34",
