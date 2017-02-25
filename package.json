@@ -2,18 +2,11 @@
   "name": "svg-inline-react",
   "version": "1.0.3",
   "description": "Inline SVG wrapper component for React",
-  "main": "dist/index.js",
-  "jsnext:main": "es/index.js",
+  "main": "lib/index.js",
+  "jsnext:main": "lib/index.js",
   "scripts": {
     "test": "karma start",
-    "test:conformance": "npm run clean && npm run build && babel-node ./test/import.js ",
-    "clean": "rimraf es dist",
-    "build:es": "babel lib --out-dir es --blacklist=es6.modules --stage=0",
-    "build:cjs": "babel lib --out-dir dist --stage=0",
-    "build": "npm run build:es && npm run build:cjs",
-    "version": "npm run build",
-    "postversion": "git push && git push --tags",
-    "prepublish": "npm run build"
+    "build": "webpack"
   },
   "author": "Jaeho Lee <me@jaeholee.org>",
   "license": "MIT",
@@ -23,8 +16,7 @@
   },
   "keywords": [
     "svg",
-    "react",
-    "loader"
+    "react"
   ],
   "bugs": {
     "url": "https://github.com/sairion/svg-inline-react/issues"
@@ -34,17 +26,18 @@
     "react": "^0.14.0 || ^15.0.0"
   },
   "devDependencies": {
-    "babel": "^5.8.34",
-    "babel-core": "^5.8.35",
-    "babel-loader": "^5.4.0",
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.23.0",
+    "babel-preset-stage-1": "^6.22.0",
     "karma": "^0.13.21",
     "karma-chrome-launcher": "^0.2.2",
     "karma-mocha": "^0.2.2",
     "karma-spec-reporter": "0.0.24",
     "karma-webpack": "^1.7.0",
     "mocha": "^2.3.4",
-    "react-dom": "^0.14.3",
-    "rimraf": "^2.5.1",
+    "react-dom": "^0.14.0 || ^15.0.0",
     "svg-inline-loader": "^0.4.1",
     "webpack": "^1.12.14"
   }

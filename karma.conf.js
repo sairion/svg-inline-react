@@ -1,3 +1,5 @@
+var webpackConf = require('./webpack.config.js');
+
 module.exports = function(config) {
     var conf = {
         basePath: '.',
@@ -20,26 +22,7 @@ module.exports = function(config) {
             'karma-chrome-launcher',
             'karma-webpack',
         ],
-        webpack: {
-            cache: true,
-            debug: true,
-            devtool: 'inline-source-map',
-            entry: [
-                './dist/index.js'
-            ],
-            module: {
-                loaders: [
-                    {
-                        test: /\.js$/,
-                        loader: 'babel',
-                    },
-                    {
-                        test: /\.svg$/,
-                        loader: 'svg-inline',
-                    },
-                ]
-            }
-        },
+        webpack: webpackConf,
         autoWatch: true,
         singleRun: false
     };
