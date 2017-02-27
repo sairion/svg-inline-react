@@ -6,8 +6,8 @@ import InlineSVG from '../lib';
 
 
 describe('<InlineSVG />', function () {
-    var src = require('./fixture/1.svg');
-    var target;
+    let src = require('./fixture/1.svg');
+    let target;
 
     before(() => {
         target = document.createElement('div');
@@ -17,14 +17,14 @@ describe('<InlineSVG />', function () {
     it('should render component correctly with expected output', () => {
         const rendered = ReactDOM.render(<InlineSVG src={src} />, target);
         const r = ReactDOM.findDOMNode(rendered);
-        const svg = r.children[0];
-        const g = svg.children[0];
-
-        // TODO: automated 1:1 element prop check
-        assert.equal(r.tagName, 'I');
-        assert.equal(svg.tagName, 'svg');
-        assert.equal(g.tagName, 'g');
-        assert.equal(g.id, 'artboard-1');
+        const svg = r.firstElementChild;
+        const g = svg.firstElementChild;
+        [
+            [r.tagName, 'I'],
+            [svg.tagName, 'svg'],
+            [g.tagName, 'g'],
+            [g.id, 'artboard-1']
+        ].forEach(([a, b]) => { assert.equal(a, b) });
     });
 
     it('should be able to change container element', function () {
@@ -37,5 +37,10 @@ describe('<InlineSVG />', function () {
         const rendered = ReactDOM.render(<InlineSVG src={src} raw={true} />, target);
         const svg = ReactDOM.findDOMNode(rendered);
         assert.equal(svg.tagName, 'svg');
+        
+        // node removed data-reactroot
+        const svg2 = svg.cloneNode(true);
+        svg2.removeAttribute('data-reactroot');
+        assert.equal(src, svg2.outerHTML);
     });
 });

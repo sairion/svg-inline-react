@@ -37,7 +37,7 @@ You can change element where svg included using `element` prop, default is `<i /
 
 ### prop `raw` : bool (experimental!)
 
-This prop allows your svg file to be rendered directly, without a container element wraps it. This is an experimental feature. Since this feature needs `DOMParser` svg+xml support, it's only avaialble on >= IE10 and other modern browsers (it checks support before use, so errors won't be thrown though). Also, the prop will be ignored on server side rendering environment.
+This prop allows your svg file to be rendered directly, without a container element wraps it. This is an experimental feature. Also, the prop will be ignored on server side rendering environment.
 
 ## Notes
 
