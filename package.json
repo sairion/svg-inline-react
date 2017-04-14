@@ -40,5 +40,8 @@
     "react-dom": "^0.14.0 || ^15.0.0",
     "svg-inline-loader": "^0.4.1",
     "webpack": "^1.12.14"
+  },
+  "dependencies": {
+    "prop-types": "^15.5.0"
   }
 }
