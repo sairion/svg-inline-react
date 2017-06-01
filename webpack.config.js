@@ -3,7 +3,7 @@ module.exports = {
     debug: true,
     devtool: 'cheap-module-hidden-source-map',
     entry: [
-        './lib/index.js'
+        './src/index.js'
     ],
     output: {
         filename: './dist/index.js',

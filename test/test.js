@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import assert from 'assert';
 
-import InlineSVG from '../lib';
+import InlineSVG from '../src';
 
 
 describe('<InlineSVG />', function () {
@@ -37,7 +37,7 @@ describe('<InlineSVG />', function () {
         const rendered = ReactDOM.render(<InlineSVG src={src} raw={true} />, target);
         const svg = ReactDOM.findDOMNode(rendered);
         assert.equal(svg.tagName, 'svg');
-        
+
         // node removed data-reactroot
         const svg2 = svg.cloneNode(true);
         svg2.removeAttribute('data-reactroot');
