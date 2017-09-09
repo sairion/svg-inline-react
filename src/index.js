@@ -1,7 +1,7 @@
 import React from 'react';
 import { string, bool } from 'prop-types';
 
-import { switchSVGAttrToReactProp, getSVGFromSource, extractSVGProps, stripSVG } from './util';
+import { getSVGFromSource, extractSVGProps } from './util';
 
 
 const process = process || { env: {} };
