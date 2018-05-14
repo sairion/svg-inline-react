@@ -14,9 +14,16 @@ export function serializeAttrs(map) {
     const ret = {};
     for (let prop, i = 0; i < map.length; i++) {
         const key = map[i].name;
-        if (!startsWith(key, DataPropPrefix)) {
+        if (key == "class") {
+            prop = "className";
+        }
+        else if (!startsWith(key, DataPropPrefix)) {
             prop = convertReactSVGDOMProperty(key);
         }
+        else {
+            prop = key;
+        }
+
         ret[prop] = map[i].value;
     }
     return ret;
