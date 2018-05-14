@@ -23,6 +23,7 @@ export function serializeAttrs(map) {
         else {
             prop = key;
         }
+
         ret[prop] = map[i].value;
     }
     return ret;
@@ -32,7 +33,7 @@ export function getSVGFromSource(src) {
     const svgContainer = document.createElement('div');
     svgContainer.innerHTML = src;
     const svg = svgContainer.firstElementChild;
-    svg.remove(); // deref from parent element
+    svg.remove ? svg.remove() : svgContainer.removeChild(svg); // deref from parent element
     return svg;
 }
 
