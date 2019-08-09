@@ -7,7 +7,8 @@ import { getSVGFromSource, extractSVGProps } from './util';
 const process = process || { env: {} };
 
 export default class InlineSVG extends React.Component {
-    componentWillReceiveProps({ children }) {
+    componentDidMount() {
+        const { children } = this.props;
         if ("production" !== process.env.NODE_ENV && children != null) {
             console.info('<InlineSVG />: `children` prop will be ignored.');
         }
