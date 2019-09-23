@@ -1,6 +1,6 @@
 {
   "name": "svg-inline-react",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "Inline SVG wrapper component for React",
   "main": "lib/index.js",
   "jsnext:main": "lib/index.js",
